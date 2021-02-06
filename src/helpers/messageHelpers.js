@@ -7,10 +7,13 @@ export function isDirectMessage(message) {
 }
 
 export function extractArgsFromMessage(message) {
+  if (!message.content.startsWith(process.env.DISCORD_PREFIX)) return null;
   return message.content.replace(process.env.DISCORD_PREFIX, "").split(/ +/g);
 }
 
 export function getCommand(message) {
   const args = extractArgsFromMessage(message);
-  return args.shift().toLowerCase();
+  if (args) {
+    return args.shift().toLowerCase();
+  }
 }

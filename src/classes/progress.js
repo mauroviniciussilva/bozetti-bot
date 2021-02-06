@@ -28,11 +28,7 @@ class Progress {
     this.counter = 0;
   }
 
-  async sendImage() {
-    if (!this.client || !this.channelId) return;
-
-    const channel = this.getChannel();
-
+  async buildProgress() {
     let fontSize = jimp.FONT_SANS_32_BLACK;
     let position = { left: 287, top: 49 };
     if (this.counter > 9) {
@@ -47,9 +43,19 @@ class Progress {
       .print(font, position.left, position.top, `${this.counter}`)
       .write("images/progress.png");
 
-    channel.send(``, { files: ["images/progress.png"] });
-
     this.counter++;
+  }
+
+  async sendImage() {
+    if (!this.client || !this.channelId) return;
+
+    const channel = this.getChannel();
+    channel.send(``, { files: ["images/progress.png"] });
+  }
+
+  async buildProgressAndSendImage() {
+    await this.buildProgress();
+    this.sendImage();
   }
 }
 
