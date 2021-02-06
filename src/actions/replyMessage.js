@@ -50,6 +50,17 @@ export async function replyMessage(client, message) {
       case "progresso": {
         progress.sendImage();
       }
+      case "help": {
+        message.channel.send(`
+          \`\`\`
+          !ping - Validar latência
+          !iniciar - Inicia a contagem de dias
+          !parar - Para a contagem de dias
+          !errou - Reinicia a contagem
+          !progresso - Visualizar dias da contagem
+          \`\`\`
+        `);
+      }
       default: {
         await message.channel.send("Eu não conheço esse comando!");
       }
