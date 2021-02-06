@@ -52,7 +52,7 @@ async function replyMessage(client, message) {
           message.react("👍");
 
           var _job = _setup.cron.getJob();
-          if (!_job.running()) {
+          if (!_job.running) {
             _job.stop();
             var gif = await _gifProvider2.default.searchRandomGit("stopped");
             message.channel.send(gif);
@@ -66,11 +66,8 @@ async function replyMessage(client, message) {
           message.react("🤦🏽");
 
           var _job2 = _setup.cron.getJob();
-          var isRunning = _job2.running();
 
-          console.log(isRunning);
-
-          if (!isRunning) {
+          if (!_job2.running) {
             message.channel.send("Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?");
           } else {
             _setup.progress.restartProgress();

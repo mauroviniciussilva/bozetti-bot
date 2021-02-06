@@ -43,7 +43,7 @@ export async function replyMessage(client, message) {
         message.react("👍");
 
         const job = cron.getJob();
-        if (!job.running()) {
+        if (!job.running) {
           job.stop();
           const gif = await gifProvider.searchRandomGit("stopped");
           message.channel.send(gif);
@@ -58,11 +58,8 @@ export async function replyMessage(client, message) {
         message.react("🤦🏽");
 
         const job = cron.getJob();
-        const isRunning = job.running();
 
-        console.log(isRunning);
-
-        if (!isRunning) {
+        if (!job.running) {
           message.channel.send(
             "Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?"
           );
