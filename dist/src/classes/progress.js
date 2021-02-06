@@ -49,12 +49,8 @@ var Progress = function () {
       this.counter = 0;
     }
   }, {
-    key: "sendImage",
-    value: async function sendImage() {
-      if (!this.client || !this.channelId) return;
-
-      var channel = this.getChannel();
-
+    key: "buildProgress",
+    value: async function buildProgress() {
       var fontSize = _jimp2.default.FONT_SANS_32_BLACK;
       var position = { left: 287, top: 49 };
       if (this.counter > 9) {
@@ -67,9 +63,21 @@ var Progress = function () {
 
       image.print(font, position.left, position.top, "" + this.counter).write("images/progress.png");
 
-      channel.send("", { files: ["images/progress.png"] });
-
       this.counter++;
+    }
+  }, {
+    key: "sendImage",
+    value: async function sendImage() {
+      if (!this.client || !this.channelId) return;
+
+      var channel = this.getChannel();
+      channel.send("", { files: ["images/progress.png"] });
+    }
+  }, {
+    key: "buildProgressAndSendImage",
+    value: async function buildProgressAndSendImage() {
+      await this.buildProgress();
+      this.sendImage();
     }
   }]);
 

@@ -16,10 +16,13 @@ function isDirectMessage(message) {
 }
 
 function extractArgsFromMessage(message) {
+  if (!message.content.startsWith(process.env.DISCORD_PREFIX)) return null;
   return message.content.replace(process.env.DISCORD_PREFIX, "").split(/ +/g);
 }
 
 function getCommand(message) {
   var args = extractArgsFromMessage(message);
-  return args.shift().toLowerCase();
+  if (args) {
+    return args.shift().toLowerCase();
+  }
 }
