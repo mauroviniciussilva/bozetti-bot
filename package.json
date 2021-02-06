@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm i -g rimraf && npm run build && node dist/bot.js"
+    "start": "npm install && node dist/bot.js"
   },
   "keywords": [],
   "author": "",
