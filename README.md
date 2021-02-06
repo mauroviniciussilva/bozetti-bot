@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/mauroviniciussilva/Proffy/blob/master/italian-hand.png" alt="Bozetti" width="280"/>
+  <img src="https://github.com/mauroviniciussilva/bozetti-bot/blob/main/images/italian-hand.png" alt="Bozetti" width="280"/>
 </p>
 
 <p align="center">	
@@ -8,7 +8,7 @@
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mauroviniciussilva/bozetti-bot?color=774DD6">
   </a> 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-8257E5">
-  <a href="https://github.com/mauroviniciussilva/proffy/stargazers">
+  <a href="https://github.com/mauroviniciussilva/bozetti-bot/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/mauroviniciussilva/proffy?color=8257E5&logo=github">
   </a>
 </p>
