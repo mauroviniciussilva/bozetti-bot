@@ -29,7 +29,7 @@ export async function replyMessage(client, message) {
         message.react("👍");
 
         const job = cron.getJob();
-        if (job.running()) {
+        if (job.running) {
           message.channel.send("Já estou contando os dias!");
         } else {
           progress.setChannelId(message.channel.id);
@@ -43,7 +43,7 @@ export async function replyMessage(client, message) {
         message.react("👍");
 
         const job = cron.getJob();
-        if (!job.running) {
+        if (job.running) {
           job.stop();
           const gif = await gifProvider.searchRandomGit("stopped");
           message.channel.send(gif);
@@ -59,11 +59,7 @@ export async function replyMessage(client, message) {
 
         const job = cron.getJob();
 
-        if (!job.running) {
-          message.channel.send(
-            "Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?"
-          );
-        } else {
+        if (job.running) {
           progress.restartProgress();
 
           const gif = await gifProvider.searchRandomGit("disappointed");
@@ -71,6 +67,10 @@ export async function replyMessage(client, message) {
           message.channel.send(gif);
           message.channel.send(
             "Contagem reiniciada com sucesso. Voltamos à estaca zero."
+          );
+        } else {
+          message.channel.send(
+            "Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?"
           );
         }
         break;
