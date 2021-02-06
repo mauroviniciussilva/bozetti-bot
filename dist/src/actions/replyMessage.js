@@ -38,7 +38,7 @@ async function replyMessage(client, message) {
 
           var job = _setup.cron.getJob();
           if (job.running()) {
-            message.send("Já estou contando os dias!");
+            message.channel.send("Já estou contando os dias!");
           } else {
             _setup.progress.setChannelId(message.channel.id);
             _setup.progress.setClient(client);
@@ -57,7 +57,7 @@ async function replyMessage(client, message) {
             var gif = await _gifProvider2.default.searchRandomGit("stopped");
             message.channel.send(gif);
           } else {
-            message.send("Eu ainda nem comecei a contar os dias e você já está pedindo para eu parar?");
+            message.channel.send("Eu ainda nem comecei a contar os dias e você já está pedindo para eu parar?");
           }
           break;
         }
@@ -68,7 +68,7 @@ async function replyMessage(client, message) {
           var _job2 = _setup.cron.getJob();
 
           if (!_job2.running()) {
-            message.send("Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?");
+            message.channel.send("Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?");
           } else {
             _setup.progress.restartProgress();
 

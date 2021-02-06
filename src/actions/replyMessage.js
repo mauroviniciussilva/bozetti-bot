@@ -30,7 +30,7 @@ export async function replyMessage(client, message) {
 
         const job = cron.getJob();
         if (job.running()) {
-          message.send("Já estou contando os dias!");
+          message.channel.send("Já estou contando os dias!");
         } else {
           progress.setChannelId(message.channel.id);
           progress.setClient(client);
@@ -48,7 +48,7 @@ export async function replyMessage(client, message) {
           const gif = await gifProvider.searchRandomGit("stopped");
           message.channel.send(gif);
         } else {
-          message.send(
+          message.channel.send(
             "Eu ainda nem comecei a contar os dias e você já está pedindo para eu parar?"
           );
         }
@@ -60,7 +60,7 @@ export async function replyMessage(client, message) {
         const job = cron.getJob();
 
         if (!job.running()) {
-          message.send(
+          message.channel.send(
             "Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?"
           );
         } else {
