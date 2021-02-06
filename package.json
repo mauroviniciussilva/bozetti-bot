@@ -4,7 +4,7 @@
   "description": "Um bot para não errar o nome do Bozetti!",
   "main": "bot.js",
   "scripts": {
-    "rimraf": "./node_modules/rimraf/bin.js",
+    "preinstall": "npm i -g rimraf",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "npm run build && node dist/bot.js"
   },
