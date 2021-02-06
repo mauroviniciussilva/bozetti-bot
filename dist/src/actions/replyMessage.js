@@ -3,6 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 exports.replyMessage = replyMessage;
 
 var _gifProvider = require("../providers/gifProvider");
@@ -21,7 +24,7 @@ async function replyMessage(client, message) {
 
   var command = (0, _messageHelpers.getCommand)(message);
   if (command) {
-    switch (command) {
+    switch (command[0]) {
       case "ping":
         {
           var response = await message.channel.send("Ping?");
@@ -62,9 +65,21 @@ async function replyMessage(client, message) {
           _setup.progress.sendImage();
           break;
         }
+      case "mudar-progresso":
+        {
+          var _command = _slicedToArray(command, 2),
+              days = _command[1];
+
+          if (Number.isInteger(parseInt(days))) {
+            _setup.progress.setProgress(command[1]);
+            _setup.progress.buildProgressAndSendImage();
+          } else {
+            message.channel.send("Digite um número para que eu possa reconfigurar a contagem de dias!");
+          }
+        }
       case "help":
         {
-          message.channel.send("\n          ```\n            !ping - Validar lat\xEAncia\n            !iniciar - Inicia a contagem de dias\n            !parar - Para a contagem de dias\n            !errou - Reinicia a contagem\n            !progresso - Visualizar dias da contagem\n          ```\n        ");
+          message.channel.send("\n          ```\n            !ping - Validar lat\xEAncia\n            !iniciar - Inicia a contagem de dias\n            !parar - Para a contagem de dias\n            !errou - Reinicia a contagem\n            !progresso - Visualizar dias da contagem\n            !mudar-progresso - Recebe um argumento para modificar o progresso do contador\n          ```\n        ");
           break;
         }
       default:

@@ -14,6 +14,9 @@ export function extractArgsFromMessage(message) {
 export function getCommand(message) {
   const args = extractArgsFromMessage(message);
   if (args) {
-    return args.shift().toLowerCase();
+    return args.map((arg) => {
+      if (typeof arg === "string") arg.toLowerCase();
+      return arg;
+    });
   }
 }

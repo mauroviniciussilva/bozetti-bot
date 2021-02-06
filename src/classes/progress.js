@@ -28,6 +28,10 @@ class Progress {
     this.counter = 0;
   }
 
+  setProgress(days) {
+    this.counter = days;
+  }
+
   async buildProgress() {
     let fontSize = jimp.FONT_SANS_32_BLACK;
     let position = { left: 287, top: 49 };

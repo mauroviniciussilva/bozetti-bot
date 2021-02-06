@@ -13,7 +13,7 @@ export async function replyMessage(client, message) {
 
   const command = getCommand(message);
   if (command) {
-    switch (command) {
+    switch (command[0]) {
       case "ping": {
         const response = await message.channel.send("Ping?");
         response.edit(
@@ -55,6 +55,17 @@ export async function replyMessage(client, message) {
         progress.sendImage();
         break;
       }
+      case "mudar-progresso": {
+        const [, days] = command;
+        if (Number.isInteger(parseInt(days))) {
+          progress.setProgress(command[1]);
+          progress.buildProgressAndSendImage();
+        } else {
+          message.channel.send(
+            "Digite um número para que eu possa reconfigurar a contagem de dias!"
+          );
+        }
+      }
       case "help": {
         message.channel.send(`
           \`\`\`
@@ -63,6 +74,7 @@ export async function replyMessage(client, message) {
             !parar - Para a contagem de dias
             !errou - Reinicia a contagem
             !progresso - Visualizar dias da contagem
+            !mudar-progresso - Recebe um argumento para modificar o progresso do contador
           \`\`\`
         `);
         break;

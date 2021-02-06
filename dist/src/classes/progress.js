@@ -49,6 +49,11 @@ var Progress = function () {
       this.counter = 0;
     }
   }, {
+    key: "setProgress",
+    value: function setProgress(days) {
+      this.counter = days;
+    }
+  }, {
     key: "buildProgress",
     value: async function buildProgress() {
       var fontSize = _jimp2.default.FONT_SANS_32_BLACK;

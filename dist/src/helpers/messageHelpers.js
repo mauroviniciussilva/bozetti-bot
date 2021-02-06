@@ -23,6 +23,9 @@ function extractArgsFromMessage(message) {
 function getCommand(message) {
   var args = extractArgsFromMessage(message);
   if (args) {
-    return args.shift().toLowerCase();
+    return args.map(function (arg) {
+      if (typeof arg === "string") arg.toLowerCase();
+      return arg;
+    });
   }
 }
