@@ -75,8 +75,15 @@ export async function replyMessage(client, message) {
         }
         break;
       }
+      case "mostrar-pronuncia": {
+        message.react("🗣️");
+        message.channel.send("É assim que se pronuncia!", {
+          files: ["bozetti.mp3"],
+        });
+        break;
+      }
       case "help": {
-        message.react("👍");
+        message.react("ℹ️");
         message.channel.send(`
 \`\`\`
 !ping - Validar latência
@@ -85,6 +92,7 @@ export async function replyMessage(client, message) {
 !errou - Reinicia a contagem
 !progresso - Visualizar dias da contagem
 !mudar-progresso - Recebe um argumento para modificar o progresso do contador
+!mostrar-pronuncia - Enviarei um arquivo de áudio com a pronúncia correta
 \`\`\`
         `);
         break;

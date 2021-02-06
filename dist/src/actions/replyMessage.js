@@ -85,10 +85,18 @@ async function replyMessage(client, message) {
           }
           break;
         }
+      case "mostrar-pronuncia":
+        {
+          message.react("🗣️");
+          message.channel.send("É assim que se pronuncia!", {
+            files: ["bozetti.mp3"]
+          });
+          break;
+        }
       case "help":
         {
-          message.react("👍");
-          message.channel.send("\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n```\n        ");
+          message.react("ℹ️");
+          message.channel.send("\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n!mostrar-pronuncia - Enviarei um arquivo de \xE1udio com a pron\xFAncia correta\n```\n        ");
           break;
         }
       default:
