@@ -1,5 +1,3 @@
-import { DISCORD_PREFIX } from "@env";
-
 export function isABotMessage(message) {
   return message.author.bot;
 }
@@ -9,7 +7,7 @@ export function isDirectMessage(message) {
 }
 
 export function extractArgsFromMessage(message) {
-  return message.content.replace(DISCORD_PREFIX, "").split(/ +/g);
+  return message.content.replace(process.env.DISCORD_PREFIX, "").split(/ +/g);
 }
 
 export function getCommand(message) {

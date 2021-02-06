@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _jsFetchApi = require("@giphy/js-fetch-api");
 
-var giphyFetch = new _jsFetchApi.GiphyFetch("Mt1fkb4rMD4IaGXuiXPXRiRVXQ9NoIO6" || "");
+var giphyFetch = new _jsFetchApi.GiphyFetch(process.env.GIPHY_API_TOKEN || "");
 
 function generateRandomNumber() {
   return Math.floor(Math.random() * 10);

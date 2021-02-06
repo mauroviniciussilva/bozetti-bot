@@ -16,7 +16,7 @@ function isDirectMessage(message) {
 }
 
 function extractArgsFromMessage(message) {
-  return message.content.replace("!", "").split(/ +/g);
+  return message.content.replace(process.env.DISCORD_PREFIX, "").split(/ +/g);
 }
 
 function getCommand(message) {

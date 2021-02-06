@@ -2,8 +2,6 @@ import "./setup";
 
 import Discord from "discord.js";
 
-import { DISCORD_TOKEN } from "@env";
-
 import { replyMessage } from "./src/actions/replyMessage";
 
 const client = new Discord.Client();
@@ -19,4 +17,4 @@ client.on("message", async (message) => {
   replyMessage(client, message);
 });
 
-client.login(DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN);

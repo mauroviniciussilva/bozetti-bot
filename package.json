@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@giphy/js-fetch-api": "^2.1.0",
-    "babel-plugin-dotenv-import": "^2.1.0",
     "cron": "^1.8.2",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",

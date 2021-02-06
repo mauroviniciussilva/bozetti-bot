@@ -1,16 +1,3 @@
 {
-  "presets": ["es2015"],
-  "plugins": [
-    [
-      "dotenv-import",
-      {
-        "moduleName": "@env",
-        "path": ".env",
-        "blacklist": null,
-        "whitelist": null,
-        "safe": false,
-        "allowUndefined": false
-      }
-    ]
-  ]
+  "presets": ["es2015"]
 }

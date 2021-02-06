@@ -1,7 +1,6 @@
 import { GiphyFetch } from "@giphy/js-fetch-api";
-import { GIPHY_API_TOKEN } from "@env";
 
-const giphyFetch = new GiphyFetch(GIPHY_API_TOKEN || "");
+const giphyFetch = new GiphyFetch(process.env.GIPHY_API_TOKEN || "");
 
 function generateRandomNumber() {
   return Math.floor(Math.random() * 10);
