@@ -3,13 +3,13 @@
 </p>
 
 <p align="center">	
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mauroviniciussilva/bozetti-bot?color=774DD6">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mauroviniciussilva/bozetti-bot?color=FBC400">
   <a href="https://github.com/mauroviniciussilva/bozetti-bot/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mauroviniciussilva/bozetti-bot?color=774DD6">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mauroviniciussilva/bozetti-bot?color=FBC400">
   </a> 
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-8257E5">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-FBC400">
   <a href="https://github.com/mauroviniciussilva/bozetti-bot/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/mauroviniciussilva/proffy?color=8257E5&logo=github">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/mauroviniciussilva/proffy?color=FBC400&logo=github">
   </a>
 </p>
 
