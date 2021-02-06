@@ -14,7 +14,7 @@ var client = new _discord2.default.Client();
 
 client.on("ready", function () {
   console.log("O bot foi iniciado, com " + client.users.cache.size + " usu\xE1rios e em " + client.guilds.cache.size + " servidores.");
-  client.user.setActivity("É Bozzêti, não Bozzéti");
+  client.user.setActivity("É Bozêtti, não Bozétti");
 });
 
 client.on("message", async function (message) {
