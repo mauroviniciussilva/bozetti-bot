@@ -5,7 +5,6 @@ import {
   isABotMessage,
   isDirectMessage,
   getCommand,
-  findEmoji,
 } from "../helpers/messageHelpers";
 
 export async function replyMessage(client, message) {
@@ -45,6 +44,7 @@ export async function replyMessage(client, message) {
         const job = cron.getJob();
         if (job.running) {
           job.stop();
+          progress.restartProgress();
           const gif = await gifProvider.searchRandomGit("stopped");
           message.channel.send(gif);
         } else {

@@ -54,6 +54,7 @@ async function replyMessage(client, message) {
           var _job = _setup.cron.getJob();
           if (_job.running) {
             _job.stop();
+            _setup.progress.restartProgress();
             var gif = await _gifProvider2.default.searchRandomGit("stopped");
             message.channel.send(gif);
           } else {
