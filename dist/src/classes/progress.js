@@ -47,6 +47,7 @@ var Progress = function () {
     key: "restartProgress",
     value: function restartProgress() {
       this.setProgress(0);
+      this.buildProgress();
     }
   }, {
     key: "setProgress",
