@@ -76,10 +76,11 @@ async function replyMessage(client, message) {
           } else {
             message.channel.send("Digite um número para que eu possa reconfigurar a contagem de dias!");
           }
+          break;
         }
       case "help":
         {
-          message.channel.send("\n          ```\n            !ping - Validar lat\xEAncia\n            !iniciar - Inicia a contagem de dias\n            !parar - Para a contagem de dias\n            !errou - Reinicia a contagem\n            !progresso - Visualizar dias da contagem\n            !mudar-progresso - Recebe um argumento para modificar o progresso do contador\n          ```\n        ");
+          message.channel.send("\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n```\n        ");
           break;
         }
       default:

@@ -65,17 +65,18 @@ export async function replyMessage(client, message) {
             "Digite um número para que eu possa reconfigurar a contagem de dias!"
           );
         }
+        break;
       }
       case "help": {
         message.channel.send(`
-          \`\`\`
-            !ping - Validar latência
-            !iniciar - Inicia a contagem de dias
-            !parar - Para a contagem de dias
-            !errou - Reinicia a contagem
-            !progresso - Visualizar dias da contagem
-            !mudar-progresso - Recebe um argumento para modificar o progresso do contador
-          \`\`\`
+\`\`\`
+!ping - Validar latência
+!iniciar - Inicia a contagem de dias
+!parar - Para a contagem de dias
+!errou - Reinicia a contagem
+!progresso - Visualizar dias da contagem
+!mudar-progresso - Recebe um argumento para modificar o progresso do contador
+\`\`\`
         `);
         break;
       }
