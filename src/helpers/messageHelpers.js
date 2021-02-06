@@ -20,3 +20,7 @@ export function getCommand(message) {
     });
   }
 }
+
+export function findEmoji(message, emojiName) {
+  return message.guild.emojis.cache.find((emoji) => emoji.name === emojiName);
+}

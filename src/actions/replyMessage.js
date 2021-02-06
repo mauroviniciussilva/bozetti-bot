@@ -5,6 +5,7 @@ import {
   isABotMessage,
   isDirectMessage,
   getCommand,
+  findEmoji,
 } from "../helpers/messageHelpers";
 
 export async function replyMessage(client, message) {
@@ -15,7 +16,7 @@ export async function replyMessage(client, message) {
   if (command) {
     switch (command[0]) {
       case "ping": {
-        message.react(":ping_pong:");
+        message.react(findEmoji("ping_pong"));
         const response = await message.channel.send("Ping?");
         response.edit(
           `Pong! A Latência é ${
@@ -45,7 +46,7 @@ export async function replyMessage(client, message) {
         break;
       }
       case "errou": {
-        message.react(":person_facepalming_tone3:");
+        message.react(findEmoji("person_facepalming_tone3"));
         progress.restartProgress();
 
         const gif = await gifProvider.searchRandomGit("disappointed");
