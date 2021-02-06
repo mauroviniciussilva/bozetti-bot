@@ -38,7 +38,7 @@ git clone https://github.com/mauroviniciussilva/bozetti-bot.git
 npm install
 ```
 
-#### Run
+## 3. Run
 ```
 npm start
 ```
