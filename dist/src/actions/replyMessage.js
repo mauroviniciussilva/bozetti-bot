@@ -66,8 +66,11 @@ async function replyMessage(client, message) {
           message.react("🤦🏽");
 
           var _job2 = _setup.cron.getJob();
+          var isRunning = _job2.running();
 
-          if (!_job2.running()) {
+          console.log(isRunning);
+
+          if (!isRunning) {
             message.channel.send("Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?");
           } else {
             _setup.progress.restartProgress();

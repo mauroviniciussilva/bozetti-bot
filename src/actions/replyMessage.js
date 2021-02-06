@@ -58,8 +58,11 @@ export async function replyMessage(client, message) {
         message.react("🤦🏽");
 
         const job = cron.getJob();
+        const isRunning = job.running();
 
-        if (!job.running()) {
+        console.log(isRunning);
+
+        if (!isRunning) {
           message.channel.send(
             "Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?"
           );
