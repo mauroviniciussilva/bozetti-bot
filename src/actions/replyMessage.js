@@ -26,6 +26,7 @@ export async function replyMessage(client, message) {
       case "iniciar": {
         progress.setChannelId(message.channel.id);
         progress.setClient(client);
+        progress.buildProgressAndSendImage();
 
         const job = cron.getJob();
         job.start();
@@ -34,6 +35,9 @@ export async function replyMessage(client, message) {
       case "parar": {
         const job = cron.getJob();
         job.stop();
+
+        const gif = await gifProvider.searchRandomGit("stopped");
+        message.channel.send(gif);
         break;
       }
       case "errou": {

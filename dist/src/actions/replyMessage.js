@@ -32,6 +32,7 @@ async function replyMessage(client, message) {
         {
           _setup.progress.setChannelId(message.channel.id);
           _setup.progress.setClient(client);
+          _setup.progress.buildProgressAndSendImage();
 
           var job = _setup.cron.getJob();
           job.start();
@@ -41,15 +42,18 @@ async function replyMessage(client, message) {
         {
           var _job = _setup.cron.getJob();
           _job.stop();
+
+          var gif = await _gifProvider2.default.searchRandomGit("stopped");
+          message.channel.send(gif);
           break;
         }
       case "errou":
         {
           _setup.progress.restartProgress();
 
-          var gif = await _gifProvider2.default.searchRandomGit("disappointed");
+          var _gif = await _gifProvider2.default.searchRandomGit("disappointed");
 
-          message.channel.send(gif);
+          message.channel.send(_gif);
           message.channel.send("Contagem reiniciada com sucesso. Voltamos à estaca zero.");
           break;
         }

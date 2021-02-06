@@ -26,4 +26,4 @@ global.fetch = require("node-fetch");
 var cron = exports.cron = new _cron2.default();
 var progress = exports.progress = new _progress2.default();
 
-cron.setJob("0 0 10 * * 1-5", progress.sendImage.bind(progress));
+cron.setJob("0 0 10 * * 1-5", progress.buildProgressAndSendImage.bind(progress));
