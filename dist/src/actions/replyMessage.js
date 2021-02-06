@@ -27,12 +27,14 @@ async function replyMessage(client, message) {
     switch (command[0]) {
       case "ping":
         {
+          message.react(":ping_pong:");
           var response = await message.channel.send("Ping?");
           response.edit("Pong! A Lat\xEAncia \xE9 " + (response.createdTimestamp - message.createdTimestamp) + "ms.");
           break;
         }
       case "iniciar":
         {
+          message.react("👍");
           _setup.progress.setChannelId(message.channel.id);
           _setup.progress.setClient(client);
           _setup.progress.buildProgressAndSendImage();
@@ -43,6 +45,8 @@ async function replyMessage(client, message) {
         }
       case "parar":
         {
+          message.react("👍");
+
           var _job = _setup.cron.getJob();
           _job.stop();
 
@@ -52,6 +56,7 @@ async function replyMessage(client, message) {
         }
       case "errou":
         {
+          message.react(":person_facepalming_tone3:");
           _setup.progress.restartProgress();
 
           var _gif = await _gifProvider2.default.searchRandomGit("disappointed");
@@ -62,6 +67,7 @@ async function replyMessage(client, message) {
         }
       case "progresso":
         {
+          message.react("👍");
           _setup.progress.sendImage();
           break;
         }
@@ -71,6 +77,7 @@ async function replyMessage(client, message) {
               days = _command[1];
 
           if (Number.isInteger(parseInt(days))) {
+            message.react("👍");
             _setup.progress.setProgress(command[1]);
             _setup.progress.buildProgressAndSendImage();
           } else {
@@ -80,6 +87,7 @@ async function replyMessage(client, message) {
         }
       case "help":
         {
+          message.react("👍");
           message.channel.send("\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n```\n        ");
           break;
         }

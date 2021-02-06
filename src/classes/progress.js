@@ -25,7 +25,7 @@ class Progress {
   }
 
   restartProgress() {
-    this.counter = 0;
+    this.setProgress(0);
   }
 
   setProgress(days) {

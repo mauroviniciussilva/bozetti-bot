@@ -15,6 +15,7 @@ export async function replyMessage(client, message) {
   if (command) {
     switch (command[0]) {
       case "ping": {
+        message.react(":ping_pong:");
         const response = await message.channel.send("Ping?");
         response.edit(
           `Pong! A Latência é ${
@@ -24,6 +25,7 @@ export async function replyMessage(client, message) {
         break;
       }
       case "iniciar": {
+        message.react("👍");
         progress.setChannelId(message.channel.id);
         progress.setClient(client);
         progress.buildProgressAndSendImage();
@@ -33,6 +35,8 @@ export async function replyMessage(client, message) {
         break;
       }
       case "parar": {
+        message.react("👍");
+
         const job = cron.getJob();
         job.stop();
 
@@ -41,6 +45,7 @@ export async function replyMessage(client, message) {
         break;
       }
       case "errou": {
+        message.react(":person_facepalming_tone3:");
         progress.restartProgress();
 
         const gif = await gifProvider.searchRandomGit("disappointed");
@@ -52,12 +57,14 @@ export async function replyMessage(client, message) {
         break;
       }
       case "progresso": {
+        message.react("👍");
         progress.sendImage();
         break;
       }
       case "mudar-progresso": {
         const [, days] = command;
         if (Number.isInteger(parseInt(days))) {
+          message.react("👍");
           progress.setProgress(command[1]);
           progress.buildProgressAndSendImage();
         } else {
@@ -68,6 +75,7 @@ export async function replyMessage(client, message) {
         break;
       }
       case "help": {
+        message.react("👍");
         message.channel.send(`
 \`\`\`
 !ping - Validar latência
