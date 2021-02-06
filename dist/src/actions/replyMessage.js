@@ -56,10 +56,12 @@ async function replyMessage(client, message) {
       case "progresso":
         {
           _setup.progress.sendImage();
+          break;
         }
       case "help":
         {
-          message.channel.send("\n          ```\n          !ping - Validar lat\xEAncia\n          !iniciar - Inicia a contagem de dias\n          !parar - Para a contagem de dias\n          !errou - Reinicia a contagem\n          !progresso - Visualizar dias da contagem\n          ```\n        ");
+          message.channel.send("\n          ```\n            !ping - Validar lat\xEAncia\n            !iniciar - Inicia a contagem de dias\n            !parar - Para a contagem de dias\n            !errou - Reinicia a contagem\n            !progresso - Visualizar dias da contagem\n          ```\n        ");
+          break;
         }
       default:
         {
