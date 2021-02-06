@@ -27,7 +27,7 @@ async function replyMessage(client, message) {
     switch (command[0]) {
       case "ping":
         {
-          message.react((0, _messageHelpers.findEmoji)("ping_pong"));
+          message.react("🏓");
           var response = await message.channel.send("Ping?");
           response.edit("Pong! A Lat\xEAncia \xE9 " + (response.createdTimestamp - message.createdTimestamp) + "ms.");
           break;
@@ -56,7 +56,7 @@ async function replyMessage(client, message) {
         }
       case "errou":
         {
-          message.react((0, _messageHelpers.findEmoji)("person_facepalming_tone3"));
+          message.react("🤦🏽");
           _setup.progress.restartProgress();
 
           var _gif = await _gifProvider2.default.searchRandomGit("disappointed");

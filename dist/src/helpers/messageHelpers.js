@@ -7,7 +7,6 @@ exports.isABotMessage = isABotMessage;
 exports.isDirectMessage = isDirectMessage;
 exports.extractArgsFromMessage = extractArgsFromMessage;
 exports.getCommand = getCommand;
-exports.findEmoji = findEmoji;
 function isABotMessage(message) {
   return message.author.bot;
 }
@@ -29,10 +28,4 @@ function getCommand(message) {
       return arg;
     });
   }
-}
-
-function findEmoji(message, emojiName) {
-  return message.guild.emojis.cache.find(function (emoji) {
-    return emoji.name === emojiName;
-  });
 }
