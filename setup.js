@@ -9,4 +9,4 @@ global.fetch = require("node-fetch");
 export const cron = new Cron();
 export const progress = new Progress();
 
-cron.setJob("*/2 * * * * 1-5", progress.sendImage.bind(progress));
+cron.setJob("0 0 10 * * 1-5", progress.sendImage.bind(progress));
