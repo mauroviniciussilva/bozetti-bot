@@ -33,6 +33,7 @@ export async function replyMessage(client, message) {
         } else {
           progress.setChannelId(message.channel.id);
           progress.setClient(client);
+          progress.restartProgress();
           progress.buildProgressAndSendImage();
           job.start();
         }

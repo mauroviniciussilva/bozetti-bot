@@ -42,6 +42,7 @@ async function replyMessage(client, message) {
           } else {
             _setup.progress.setChannelId(message.channel.id);
             _setup.progress.setClient(client);
+            _setup.progress.restartProgress();
             _setup.progress.buildProgressAndSendImage();
             job.start();
           }
