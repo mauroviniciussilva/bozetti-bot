@@ -35,12 +35,16 @@ async function replyMessage(client, message) {
       case "iniciar":
         {
           message.react("👍");
-          _setup.progress.setChannelId(message.channel.id);
-          _setup.progress.setClient(client);
-          _setup.progress.buildProgressAndSendImage();
 
           var job = _setup.cron.getJob();
-          job.start();
+          if (job.running()) {
+            message.send("Já estou contando os dias!");
+          } else {
+            _setup.progress.setChannelId(message.channel.id);
+            _setup.progress.setClient(client);
+            _setup.progress.buildProgressAndSendImage();
+            job.start();
+          }
           break;
         }
       case "parar":
@@ -48,21 +52,31 @@ async function replyMessage(client, message) {
           message.react("👍");
 
           var _job = _setup.cron.getJob();
-          _job.stop();
-
-          var gif = await _gifProvider2.default.searchRandomGit("stopped");
-          message.channel.send(gif);
+          if (!_job.running()) {
+            _job.stop();
+            var gif = await _gifProvider2.default.searchRandomGit("stopped");
+            message.channel.send(gif);
+          } else {
+            message.send("Eu ainda nem comecei a contar os dias e você já está pedindo para eu parar?");
+          }
           break;
         }
       case "errou":
         {
           message.react("🤦🏽");
-          _setup.progress.restartProgress();
 
-          var _gif = await _gifProvider2.default.searchRandomGit("disappointed");
+          var _job2 = _setup.cron.getJob();
 
-          message.channel.send(_gif);
-          message.channel.send("Contagem reiniciada com sucesso. Voltamos à estaca zero.");
+          if (!_job2.running()) {
+            message.send("Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?");
+          } else {
+            _setup.progress.restartProgress();
+
+            var _gif = await _gifProvider2.default.searchRandomGit("disappointed");
+
+            message.channel.send(_gif);
+            message.channel.send("Contagem reiniciada com sucesso. Voltamos à estaca zero.");
+          }
           break;
         }
       case "progresso":

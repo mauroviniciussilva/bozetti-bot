@@ -27,34 +27,52 @@ export async function replyMessage(client, message) {
       }
       case "iniciar": {
         message.react("👍");
-        progress.setChannelId(message.channel.id);
-        progress.setClient(client);
-        progress.buildProgressAndSendImage();
 
         const job = cron.getJob();
-        job.start();
+        if (job.running()) {
+          message.send("Já estou contando os dias!");
+        } else {
+          progress.setChannelId(message.channel.id);
+          progress.setClient(client);
+          progress.buildProgressAndSendImage();
+          job.start();
+        }
         break;
       }
       case "parar": {
         message.react("👍");
 
         const job = cron.getJob();
-        job.stop();
-
-        const gif = await gifProvider.searchRandomGit("stopped");
-        message.channel.send(gif);
+        if (!job.running()) {
+          job.stop();
+          const gif = await gifProvider.searchRandomGit("stopped");
+          message.channel.send(gif);
+        } else {
+          message.send(
+            "Eu ainda nem comecei a contar os dias e você já está pedindo para eu parar?"
+          );
+        }
         break;
       }
       case "errou": {
         message.react("🤦🏽");
-        progress.restartProgress();
 
-        const gif = await gifProvider.searchRandomGit("disappointed");
+        const job = cron.getJob();
 
-        message.channel.send(gif);
-        message.channel.send(
-          "Contagem reiniciada com sucesso. Voltamos à estaca zero."
-        );
+        if (!job.running()) {
+          message.send(
+            "Ainda bem que eu não tinha começado a contagem ainda, não é mesmo?"
+          );
+        } else {
+          progress.restartProgress();
+
+          const gif = await gifProvider.searchRandomGit("disappointed");
+
+          message.channel.send(gif);
+          message.channel.send(
+            "Contagem reiniciada com sucesso. Voltamos à estaca zero."
+          );
+        }
         break;
       }
       case "progresso": {
