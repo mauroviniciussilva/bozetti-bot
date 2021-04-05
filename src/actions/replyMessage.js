@@ -14,13 +14,13 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export async function replyMessage(client, message, args) {
+export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
-	console.log(args);
-
 	const command = getCommand(message);
+	console.log({ command });
+
 	if (command) {
 		switch (command[0]) {
 			case 'ping': {

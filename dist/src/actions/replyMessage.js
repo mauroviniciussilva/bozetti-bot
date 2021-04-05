@@ -28,13 +28,13 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-async function replyMessage(client, message, args) {
+async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
-	console.log(args);
-
 	var command = (0, _messageHelpers.getCommand)(message);
+	console.log({ command: command });
+
 	if (command) {
 		switch (command[0]) {
 			case 'ping':
