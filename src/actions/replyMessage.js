@@ -107,10 +107,10 @@ export async function replyMessage(client, message) {
 					(r) => r.name === 'Engineering'
 				);
 
-				console.log({ role });
+				message.channel.send(`Engineering Role(${role.id}): ${role}`);
 
-				const membersFromRole = message.guild.roles.get(role.id).members;
-				console.log({ membersFromRole });
+				const membersFromRole = message.guild.roles.cache.get(role.id).members;
+				message.channel.send(`Role Members: ${membersFromRole}`);
 
 				const members = message.guild.members.cache.map((m) => m.user.username);
 

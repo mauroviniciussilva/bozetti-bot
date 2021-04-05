@@ -119,10 +119,10 @@ async function replyMessage(client, message) {
 						return r.name === 'Engineering';
 					});
 
-					console.log({ role: role });
+					message.channel.send('Engineering Role(' + role.id + '): ' + role);
 
-					var membersFromRole = message.guild.roles.get(role.id).members;
-					console.log({ membersFromRole: membersFromRole });
+					var membersFromRole = message.guild.roles.cache.get(role.id).members;
+					message.channel.send('Role Members: ' + membersFromRole);
 
 					var members = message.guild.members.cache.map(function (m) {
 						return m.user.username;
