@@ -111,7 +111,12 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					message.guild.members.fetch().then(console.log).catch(console.error);
+					message.guild.members.fetch().then(function (list) {
+						message.channel.send(list);
+					}).catch(function (err) {
+						message.channel.send(err);
+					});
+					break;
 
 					// client.guilds.cache
 					// .get(message.guild.id)
