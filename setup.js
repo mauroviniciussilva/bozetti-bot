@@ -7,7 +7,6 @@ dotenv.config();
 global.fetch = require('node-fetch');
 
 export const cronProgress = new Cron();
-export const cronSort = new Cron();
 export const progress = new Progress();
 
 cronProgress.setJob(

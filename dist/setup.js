@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.progress = exports.cronSort = exports.cronProgress = undefined;
+exports.progress = exports.cronProgress = undefined;
 
 var _dotenv = require('dotenv');
 
@@ -24,7 +24,6 @@ _dotenv2.default.config();
 global.fetch = require('node-fetch');
 
 var cronProgress = exports.cronProgress = new _cron2.default();
-var cronSort = exports.cronSort = new _cron2.default();
 var progress = exports.progress = new _progress2.default();
 
 cronProgress.setJob('0 0 10 * * 1-5', progress.buildProgressAndSendImage.bind(progress));
