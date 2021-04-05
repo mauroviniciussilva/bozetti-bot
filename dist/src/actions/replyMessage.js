@@ -116,6 +116,8 @@ async function replyMessage(client, message) {
 							return member.user.username;
 						});
 						message.channel.send(newList);
+					}).catch(function (error) {
+						message.channel.send(error);
 					});
 				}
 

@@ -110,6 +110,9 @@ export async function replyMessage(client, message) {
 							(member) => member.user.username
 						);
 						message.channel.send(newList);
+					})
+					.catch((error) => {
+						message.channel.send(error);
 					});
 			}
 
