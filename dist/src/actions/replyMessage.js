@@ -36,6 +36,8 @@ async function replyMessage(client, message) {
 	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
 	var guild = client.guilds.cache.get(message.guild.id);
+	var membersCount = guild.memberCount;
+	console.log({ membersCount: membersCount });
 	var users = guild.members.cache.map(function (m) {
 		return m.user;
 	});
@@ -151,8 +153,8 @@ async function replyMessage(client, message) {
 						return !membersNotIncluded.includes(user.username);
 					});
 
-					var membersCount = members.length;
-					var maxIndex = membersCount - 1;
+					var _membersCount = members.length;
+					var maxIndex = _membersCount - 1;
 
 					var luckyIndexForCodeReview = getRandomInt(0, maxIndex);
 					var luckyIndexForTest = getRandomInt(0, maxIndex);
