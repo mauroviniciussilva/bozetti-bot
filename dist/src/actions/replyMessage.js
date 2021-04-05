@@ -126,7 +126,7 @@ async function replyMessage(client, message) {
 						return member.user;
 					});
 					users.forEach(function (user) {
-						console.log('Fala ' + user + '! Eu t\xF4 s\xF3 testando aqui, desconsidera...');
+						message.channel.send('Fala ' + user + '! Eu t\xF4 s\xF3 testando aqui, desconsidera...');
 					});
 					// message.channel.send(`Role Members: ${users}`);
 

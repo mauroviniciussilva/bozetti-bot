@@ -112,7 +112,9 @@ export async function replyMessage(client, message) {
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
 				const users = membersFromRole.map((member) => member.user);
 				users.forEach((user) => {
-					console.log(`Fala ${user}! Eu tô só testando aqui, desconsidera...`);
+					message.channel.send(
+						`Fala ${user}! Eu tô só testando aqui, desconsidera...`
+					);
 				});
 				// message.channel.send(`Role Members: ${users}`);
 
