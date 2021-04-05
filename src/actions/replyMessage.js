@@ -14,9 +14,11 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export async function replyMessage(client, message) {
+export async function replyMessage(client, message, args) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
+
+	console.log(args);
 
 	const command = getCommand(message);
 	if (command) {
@@ -119,8 +121,6 @@ export async function replyMessage(client, message) {
 					.filter(
 						(user) => !['Felipe Mulhbaier', 'mauroV'].includes(user.username)
 					);
-
-				console.log(members, members.length);
 
 				const membersCount = members.length;
 				const maxIndex = membersCount - 1;

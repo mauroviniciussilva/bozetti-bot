@@ -28,9 +28,11 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-async function replyMessage(client, message) {
+async function replyMessage(client, message, args) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
+
+	console.log(args);
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
@@ -131,8 +133,6 @@ async function replyMessage(client, message) {
 					}).filter(function (user) {
 						return !['Felipe Mulhbaier', 'mauroV'].includes(user.username);
 					});
-
-					console.log(members, members.length);
 
 					var membersCount = members.length;
 					var maxIndex = membersCount - 1;
