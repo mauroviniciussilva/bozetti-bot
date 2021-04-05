@@ -32,7 +32,9 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
-	console.log();
+	var guild = client.guilds[0].id;
+
+	console.log(guild, message.guild.id);
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
@@ -123,11 +125,11 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					var role = client.guilds[0].roles.cache.find(function (r) {
+					var role = message.guild.roles.cache.find(function (r) {
 						return r.name === 'Engineering';
 					});
 
-					var membersFromRole = client.guilds[0].roles.cache.get(role.id).members;
+					var membersFromRole = message.guild.roles.cache.get(role.id).members;
 					var members = membersFromRole.map(function (member) {
 						return member.user;
 					});
