@@ -122,24 +122,13 @@ async function replyMessage(client, message) {
 					message.channel.send('Engineering Role(' + role.id + ')');
 
 					var membersFromRole = message.guild.roles.cache.get(role.id).members;
-					var usernames = membersFromRole.map(function (member) {
-						return member.user.username;
+					var users = membersFromRole.map(function (member) {
+						return member.user;
 					});
-					message.channel.send('Role Members: ' + usernames);
-
-					var members = message.guild.members.cache.map(function (m) {
-						return m.user.username;
+					users.forEach(function (user) {
+						console.log('Fala ' + user + '! Eu t\xF4 s\xF3 testando aqui, desconsidera...');
 					});
-
-					// console.log({ members });
-
-					// let membersWithRole = message.guild.members
-					// 	.filter((member) =>
-					// 		member.roles.find((r) => r.name === 'Engineering')
-					// 	)
-					// 	.map((member) => member.user.username);
-
-					message.channel.send('Engineering Members: ' + members);
+					// message.channel.send(`Role Members: ${users}`);
 
 					// message.guild.members
 					// 	.fetch()
