@@ -18,6 +18,8 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
+	console.log(client.guild);
+
 	const command = getCommand(message);
 	if (command) {
 		switch (command[0]) {
@@ -112,8 +114,6 @@ export async function replyMessage(client, message) {
 				const role = message.guild.roles.cache.find(
 					(r) => r.name === 'Engineering'
 				);
-
-				message.channel.send(`Engineering Role(${role.id})`);
 
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
 				const members = membersFromRole.map((member) => member.user);
