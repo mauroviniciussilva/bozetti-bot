@@ -22,6 +22,12 @@ var _messageHelpers = require('../helpers/messageHelpers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
@@ -122,36 +128,17 @@ async function replyMessage(client, message) {
 					message.channel.send('Engineering Role(' + role.id + ')');
 
 					var membersFromRole = message.guild.roles.cache.get(role.id).members;
-					var users = membersFromRole.map(function (member) {
+					var members = membersFromRole.map(function (member) {
 						return member.user;
 					});
-					users.forEach(function (user) {
-						message.channel.send('Fala <@' + user.id + '>! Eu t\xF4 s\xF3 testando aqui, desconsidera...');
-					});
-					// message.channel.send(`Role Members: ${users}`);
+					var membersCount = members.length;
+					var maxIndex = membersCount - 1;
 
-					// message.guild.members
-					// 	.fetch()
-					// 	.then((list) => {
-					// 		message.channel.send(`list: ${list}`);
-					// 	})
-					// 	.catch((err) => {
-					// 		message.channel.send(`error ${err}`);
-					// 	});
+					var luckyIndex = getRandomInt(0, maxIndex);
+					var drawnMember = members[luckyIndex];
+
+					message.channel.send('Fala <@' + drawnMember.id + '>! Voc\xEA foi escolhido aleatoriamente para ser mencionado aqui. Mas ainda \xE9 s\xF3 um teste, desconsidera mais uma vez!');
 					break;
-
-					// client.guilds.cache
-					// .get(message.guild.id)
-					// .fetch()
-					// .then((list) => {
-					// 	const newList = list.members.cache.map(
-					// 		(member) => member.user.username
-					// 	);
-					// 	message.channel.send(newList);
-					// })
-					// .catch((error) => {
-					// 	message.channel.send(error);
-					// });
 				}
 
 			case 'help':

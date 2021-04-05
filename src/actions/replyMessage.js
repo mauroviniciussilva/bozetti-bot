@@ -8,6 +8,12 @@ import {
 	getCommand,
 } from '../helpers/messageHelpers';
 
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
@@ -110,36 +116,17 @@ export async function replyMessage(client, message) {
 				message.channel.send(`Engineering Role(${role.id})`);
 
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
-				const users = membersFromRole.map((member) => member.user);
-				users.forEach((user) => {
-					message.channel.send(
-						`Fala <@${user.id}>! Eu tô só testando aqui, desconsidera...`
-					);
-				});
-				// message.channel.send(`Role Members: ${users}`);
+				const members = membersFromRole.map((member) => member.user);
+				const membersCount = members.length;
+				const maxIndex = membersCount - 1;
 
-				// message.guild.members
-				// 	.fetch()
-				// 	.then((list) => {
-				// 		message.channel.send(`list: ${list}`);
-				// 	})
-				// 	.catch((err) => {
-				// 		message.channel.send(`error ${err}`);
-				// 	});
+				const luckyIndex = getRandomInt(0, maxIndex);
+				const drawnMember = members[luckyIndex];
+
+				message.channel.send(
+					`Fala <@${drawnMember.id}>! Você foi escolhido aleatoriamente para ser mencionado aqui. Mas ainda é só um teste, desconsidera mais uma vez!`
+				);
 				break;
-
-				// client.guilds.cache
-				// .get(message.guild.id)
-				// .fetch()
-				// .then((list) => {
-				// 	const newList = list.members.cache.map(
-				// 		(member) => member.user.username
-				// 	);
-				// 	message.channel.send(newList);
-				// })
-				// .catch((error) => {
-				// 	message.channel.send(error);
-				// });
 			}
 
 			case 'help': {
