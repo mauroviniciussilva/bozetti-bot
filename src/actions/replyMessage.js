@@ -102,18 +102,23 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				client.guilds.cache
-					.get(message.guild.id)
-					.fetchMembers()
-					.then((list) => {
-						const newList = list.members.cache.map(
-							(member) => member.user.username
-						);
-						message.channel.send(newList);
-					})
-					.catch((error) => {
-						message.channel.send(error);
-					});
+				client.guild.members
+					.fetch({ query: 'hydra', limit: 1 })
+					.then(console.log)
+					.catch(console.error);
+
+				// client.guilds.cache
+				// .get(message.guild.id)
+				// .fetch()
+				// .then((list) => {
+				// 	const newList = list.members.cache.map(
+				// 		(member) => member.user.username
+				// 	);
+				// 	message.channel.send(newList);
+				// })
+				// .catch((error) => {
+				// 	message.channel.send(error);
+				// });
 			}
 
 			case 'help': {
