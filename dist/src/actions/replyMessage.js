@@ -35,8 +35,8 @@ async function replyMessage(client, message) {
 	// const role = message.guild.roles.cache.find((r) => r.name === 'Engineering');
 	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
-	var list = client.guilds.cache.get(message.guild.id);
-	list.members.map(function (m) {
+	var guild = client.guilds.cache.get(message.guild.id);
+	guild.members.cache.map(function (m) {
 		return m.user;
 	}).forEach(function (user) {
 		return console.log(user);
