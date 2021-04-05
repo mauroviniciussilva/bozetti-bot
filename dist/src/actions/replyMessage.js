@@ -121,11 +121,14 @@ async function replyMessage(client, message) {
 
 					console.log({ role: role });
 
-					var teste = message.guild.members.cache.map(function (m) {
+					var membersFromRole = message.guild.roles.get(role.id).members;
+					console.log({ membersFromRole: membersFromRole });
+
+					var members = message.guild.members.cache.map(function (m) {
 						return m.user.username;
 					});
 
-					console.log({ teste: teste });
+					// console.log({ members });
 
 					// let membersWithRole = message.guild.members
 					// 	.filter((member) =>
@@ -133,7 +136,7 @@ async function replyMessage(client, message) {
 					// 	)
 					// 	.map((member) => member.user.username);
 
-					message.channel.send({ teste: teste });
+					message.channel.send('Engineering Members: ' + members);
 
 					// message.guild.members
 					// 	.fetch()
