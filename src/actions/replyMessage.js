@@ -18,7 +18,7 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
-	const guild = client.guilds[0].id;
+	const guild = client.guilds.cache[0].id;
 
 	console.log(guild, message.guild.id);
 

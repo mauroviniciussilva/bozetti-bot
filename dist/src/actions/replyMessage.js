@@ -32,7 +32,7 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
-	var guild = client.guilds[0].id;
+	var guild = client.guilds.cache[0].id;
 
 	console.log(guild, message.guild.id);
 
