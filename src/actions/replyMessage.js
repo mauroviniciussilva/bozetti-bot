@@ -105,10 +105,10 @@ export async function replyMessage(client, message) {
 				message.guild.members
 					.fetch()
 					.then((list) => {
-						message.channel.send(list);
+						message.channel.send(`list: ${list}`);
 					})
 					.catch((err) => {
-						message.channel.send(err);
+						message.channel.send(`error ${err}`);
 					});
 				break;
 

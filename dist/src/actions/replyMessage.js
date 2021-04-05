@@ -112,9 +112,9 @@ async function replyMessage(client, message) {
 			case 'show-members':
 				{
 					message.guild.members.fetch().then(function (list) {
-						message.channel.send(list);
+						message.channel.send('list: ' + list);
 					}).catch(function (err) {
-						message.channel.send(err);
+						message.channel.send('error ' + err);
 					});
 					break;
 
