@@ -43,6 +43,4 @@ npm install
 npm start
 ```
 
-Link to add bot to your server: http://discordapp.com/oauth2/authorize?=&client_id=807384444037890078&scope=bot&permissions=35840
-
 If you want to know what this bot is capable of, type `!help`
