@@ -34,8 +34,6 @@ async function replyMessage(client, message) {
 
 	console.log(message.guild);
 
-	console.log(message.guild.id);
-
 	var role = message.guild.roles.cache.find(function (r) {
 		return r.name === 'Engineering';
 	});
@@ -44,7 +42,7 @@ async function replyMessage(client, message) {
 		return member.user;
 	}).length);
 
-	var list = client.guilds.cache.get();
+	var list = client.guilds.cache.get(message.guild.id);
 	console.log({ list: list });
 
 	var command = (0, _messageHelpers.getCommand)(message);

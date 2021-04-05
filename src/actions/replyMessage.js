@@ -20,13 +20,11 @@ export async function replyMessage(client, message) {
 
 	console.log(message.guild);
 
-	console.log(message.guild.id);
-
 	const role = message.guild.roles.cache.find((r) => r.name === 'Engineering');
 	const membersFromRole = message.guild.roles.cache.get(role.id).members;
 	console.log(membersFromRole.map((member) => member.user).length);
 
-	const list = client.guilds.cache.get();
+	const list = client.guilds.cache.get(message.guild.id);
 	console.log({ list });
 
 	const command = getCommand(message);
