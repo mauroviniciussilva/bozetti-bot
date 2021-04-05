@@ -111,11 +111,12 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					var list = client.guilds.cache.get(message.guild.id);
-					var newList = list.members.cache.map(function (member) {
-						return member.user.username;
+					client.guilds.cache.get(message.guild.id).fetchMembers().then(function (list) {
+						var newList = list.members.cache.map(function (member) {
+							return member.user.username;
+						});
+						message.channel.send(newList);
 					});
-					message.channel.send(newList);
 				}
 
 			case 'help':

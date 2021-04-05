@@ -102,11 +102,15 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				const list = client.guilds.cache.get(message.guild.id);
-				const newList = list.members.cache.map(
-					(member) => member.user.username
-				);
-				message.channel.send(newList);
+				client.guilds.cache
+					.get(message.guild.id)
+					.fetchMembers()
+					.then((list) => {
+						const newList = list.members.cache.map(
+							(member) => member.user.username
+						);
+						message.channel.send(newList);
+					});
 			}
 
 			case 'help': {
