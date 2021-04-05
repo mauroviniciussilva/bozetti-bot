@@ -111,17 +111,21 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					var membersWithRole = message.guild.members.filter(function (member) {
-						return member.roles.find(function (r) {
-							return r.name === 'Engineering';
-						});
-					}).map(function (member) {
-						return member.user.username;
+					var teste = message.guild.roles.cache.get('Engineering').members.map(function (m) {
+						return m.user.username;
 					});
+
+					console.log(teste);
+
+					// let membersWithRole = message.guild.members
+					// 	.filter((member) =>
+					// 		member.roles.find((r) => r.name === 'Engineering')
+					// 	)
+					// 	.map((member) => member.user.username);
 
 					var embed = new discord.RichEmbed({
 						title: 'Users with the Engineering role',
-						description: membersWithRole.join('\n'),
+						description: teste.join('\n'),
 						color: 0xffff
 					});
 

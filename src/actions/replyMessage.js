@@ -102,15 +102,21 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				let membersWithRole = message.guild.members
-					.filter((member) =>
-						member.roles.find((r) => r.name === 'Engineering')
-					)
-					.map((member) => member.user.username);
+				const teste = message.guild.roles.cache
+					.get('Engineering')
+					.members.map((m) => m.user.username);
+
+				console.log(teste);
+
+				// let membersWithRole = message.guild.members
+				// 	.filter((member) =>
+				// 		member.roles.find((r) => r.name === 'Engineering')
+				// 	)
+				// 	.map((member) => member.user.username);
 
 				let embed = new discord.RichEmbed({
 					title: `Users with the Engineering role`,
-					description: membersWithRole.join('\n'),
+					description: teste.join('\n'),
 					color: 0xffff,
 				});
 
