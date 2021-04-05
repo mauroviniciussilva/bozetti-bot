@@ -18,14 +18,11 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
-	console.log(message.guild);
-
-	const role = message.guild.roles.cache.find((r) => r.name === 'Engineering');
-	const membersFromRole = message.guild.roles.cache.get(role.id).members;
-	console.log(membersFromRole.map((member) => member.user).length);
+	// const role = message.guild.roles.cache.find((r) => r.name === 'Engineering');
+	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
 	const list = client.guilds.cache.get(message.guild.id);
-	console.log({ members: list.members });
+	list.members.forEach((member) => console.log(member));
 
 	const command = getCommand(message);
 	if (command) {

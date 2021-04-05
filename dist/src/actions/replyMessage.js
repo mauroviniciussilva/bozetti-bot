@@ -32,18 +32,13 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
-	console.log(message.guild);
-
-	var role = message.guild.roles.cache.find(function (r) {
-		return r.name === 'Engineering';
-	});
-	var membersFromRole = message.guild.roles.cache.get(role.id).members;
-	console.log(membersFromRole.map(function (member) {
-		return member.user;
-	}).length);
+	// const role = message.guild.roles.cache.find((r) => r.name === 'Engineering');
+	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
 	var list = client.guilds.cache.get(message.guild.id);
-	console.log({ members: list.members });
+	list.members.forEach(function (member) {
+		return console.log(member);
+	});
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
@@ -144,12 +139,12 @@ async function replyMessage(client, message) {
 						});
 					}
 
-					var _role = message.guild.roles.cache.find(function (r) {
+					var role = message.guild.roles.cache.find(function (r) {
 						return r.name === 'Engineering';
 					});
 
-					var _membersFromRole = message.guild.roles.cache.get(_role.id).members;
-					var members = _membersFromRole.map(function (member) {
+					var membersFromRole = message.guild.roles.cache.get(role.id).members;
+					var members = membersFromRole.map(function (member) {
 						return member.user;
 					}).filter(function (user) {
 						return !membersNotIncluded.includes(user.username);
