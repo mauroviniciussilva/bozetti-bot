@@ -28,7 +28,3 @@ var cronSort = exports.cronSort = new _cron2.default();
 var progress = exports.progress = new _progress2.default();
 
 cronProgress.setJob('0 0 10 * * 1-5', progress.buildProgressAndSendImage.bind(progress));
-
-cronSort.setJob('0 0 11 * * 1', function () {
-	console.log('Developing functionality...');
-});

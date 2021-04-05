@@ -14,7 +14,3 @@ cronProgress.setJob(
 	'0 0 10 * * 1-5',
 	progress.buildProgressAndSendImage.bind(progress)
 );
-
-cronSort.setJob('0 0 11 * * 1', () => {
-	console.log('Developing functionality...');
-});

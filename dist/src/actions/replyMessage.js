@@ -33,8 +33,6 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
 	var command = (0, _messageHelpers.getCommand)(message);
-	console.log({ command: command });
-
 	if (command) {
 		switch (command[0]) {
 			case 'ping':
@@ -123,6 +121,16 @@ async function replyMessage(client, message) {
 				}
 			case 'sortear-responsabilidades':
 				{
+					var haveExclude = command[1] === '-not';
+					var membersNotIncluded = ['Felipe Mulhbaier', 'mauroV'];
+
+					if (haveExclude) {
+						var membersToExclude = command[2].split(',');
+						membersToExclude.forEach(function (member) {
+							membersNotIncluded.push(member);
+						});
+					}
+
 					var role = message.guild.roles.cache.find(function (r) {
 						return r.name === 'Engineering';
 					});
@@ -131,7 +139,7 @@ async function replyMessage(client, message) {
 					var members = membersFromRole.map(function (member) {
 						return member.user;
 					}).filter(function (user) {
-						return !['Felipe Mulhbaier', 'mauroV'].includes(user.username);
+						return !membersNotIncluded.includes(user.username);
 					});
 
 					var membersCount = members.length;
@@ -143,16 +151,16 @@ async function replyMessage(client, message) {
 					var drawnMemberCodeReview = members[luckyIndexForCodeReview];
 					var drawnMemberTest = members[luckyIndexForTest];
 
-					message.channel.send('Fala <@' + drawnMemberCodeReview.id + '>! Voc\xEA \xE9 o escolhido da semanada para ser respons\xE1vel pela coluna de **Revis\xE3o** no Board!');
+					message.channel.send('Fala <@' + drawnMemberCodeReview.id + '>! Voc\xEA \xE9 o escolhido da semana para ser respons\xE1vel pela coluna de **Revis\xE3o** no Board!');
 
-					message.channel.send('Fala <@' + drawnMemberTest.id + '>! Voc\xEA \xE9 o escolhido da semanada para ser respons\xE1vel pela coluna de **Teste** no Board!');
+					message.channel.send('Fala <@' + drawnMemberTest.id + '>! Voc\xEA \xE9 o escolhido da semana para ser respons\xE1vel pela coluna de **Teste** no Board!');
 					break;
 				}
 
 			case 'help':
 				{
 					message.react('ℹ️');
-					message.channel.send('\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n!mostrar-pronuncia - Enviarei um arquivo de \xE1udio com a pron\xFAncia correta\n!sortear-responsabilidades - Faz um sorteio entre os membros da role \'Engineering\' para distribuir responsabilidades do Board\n```\n        ');
+					message.channel.send('\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n!mostrar-pronuncia - Enviarei um arquivo de \xE1udio com a pron\xFAncia correta\n!sortear-responsabilidades - Faz um sorteio entre os membros da role \'Engineering\' para distribuir responsabilidades do Board\n!sortear-responsabilidades -not Usuario1,Usuario2 - Faz um sorteio entre os membros da role \'Engineering\' para distribuir responsabilidades do Board, excluindo os usu\xE1rios informados\n```\n        ');
 					break;
 				}
 			default:

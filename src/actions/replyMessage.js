@@ -19,8 +19,6 @@ export async function replyMessage(client, message) {
 	if (isDirectMessage(message)) return;
 
 	const command = getCommand(message);
-	console.log({ command });
-
 	if (command) {
 		switch (command[0]) {
 			case 'ping': {
@@ -111,6 +109,16 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'sortear-responsabilidades': {
+				const haveExclude = command[1] === '-not';
+				const membersNotIncluded = ['Felipe Mulhbaier', 'mauroV'];
+
+				if (haveExclude) {
+					const membersToExclude = command[2].split(',');
+					membersToExclude.forEach((member) => {
+						membersNotIncluded.push(member);
+					});
+				}
+
 				const role = message.guild.roles.cache.find(
 					(r) => r.name === 'Engineering'
 				);
@@ -118,9 +126,7 @@ export async function replyMessage(client, message) {
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
 				const members = membersFromRole
 					.map((member) => member.user)
-					.filter(
-						(user) => !['Felipe Mulhbaier', 'mauroV'].includes(user.username)
-					);
+					.filter((user) => !membersNotIncluded.includes(user.username));
 
 				const membersCount = members.length;
 				const maxIndex = membersCount - 1;
@@ -132,11 +138,11 @@ export async function replyMessage(client, message) {
 				const drawnMemberTest = members[luckyIndexForTest];
 
 				message.channel.send(
-					`Fala <@${drawnMemberCodeReview.id}>! Você é o escolhido da semanada para ser responsável pela coluna de **Revisão** no Board!`
+					`Fala <@${drawnMemberCodeReview.id}>! Você é o escolhido da semana para ser responsável pela coluna de **Revisão** no Board!`
 				);
 
 				message.channel.send(
-					`Fala <@${drawnMemberTest.id}>! Você é o escolhido da semanada para ser responsável pela coluna de **Teste** no Board!`
+					`Fala <@${drawnMemberTest.id}>! Você é o escolhido da semana para ser responsável pela coluna de **Teste** no Board!`
 				);
 				break;
 			}
@@ -153,6 +159,7 @@ export async function replyMessage(client, message) {
 !mudar-progresso - Recebe um argumento para modificar o progresso do contador
 !mostrar-pronuncia - Enviarei um arquivo de áudio com a pronúncia correta
 !sortear-responsabilidades - Faz um sorteio entre os membros da role 'Engineering' para distribuir responsabilidades do Board
+!sortear-responsabilidades -not Usuario1,Usuario2 - Faz um sorteio entre os membros da role 'Engineering' para distribuir responsabilidades do Board, excluindo os usuários informados
 \`\`\`
         `);
 				break;
