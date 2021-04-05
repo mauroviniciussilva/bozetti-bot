@@ -18,7 +18,7 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
-	console.log(client.guilds);
+	console.log();
 
 	const command = getCommand(message);
 	if (command) {
@@ -111,11 +111,12 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				const role = message.guild.roles.cache.find(
+				const role = client.guilds[0].roles.cache.find(
 					(r) => r.name === 'Engineering'
 				);
 
-				const membersFromRole = message.guild.roles.cache.get(role.id).members;
+				const membersFromRole = client.guilds[0].roles.cache.get(role.id)
+					.members;
 				const members = membersFromRole.map((member) => member.user);
 				const membersCount = members.length;
 				const maxIndex = membersCount - 1;
