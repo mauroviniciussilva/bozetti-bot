@@ -36,11 +36,10 @@ async function replyMessage(client, message) {
 	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
 	var guild = client.guilds.cache.get(message.guild.id);
-	guild.members.cache.map(function (m) {
+	var users = guild.members.cache.map(function (m) {
 		return m.user;
-	}).forEach(function (user) {
-		return console.log(user);
 	});
+	console.log(users.length);
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
