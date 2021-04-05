@@ -102,9 +102,7 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				const teste = message.guild.roles.cache
-					.get('Engineering')
-					.members.map((m) => m.user.username);
+				const teste = message.guild.members.cache.map((m) => m.user.username);
 
 				console.log(teste);
 

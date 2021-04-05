@@ -111,7 +111,7 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					var teste = message.guild.roles.cache.get('Engineering').members.map(function (m) {
+					var teste = message.guild.members.cache.map(function (m) {
 						return m.user.username;
 					});
 
