@@ -18,6 +18,9 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
+	const membersFromRole = message.guild.roles.cache.get(role.id).members;
+	console.log(membersFromRole.map((member) => member.user).length);
+
 	const command = getCommand(message);
 	if (command) {
 		switch (command[0]) {
@@ -124,7 +127,6 @@ export async function replyMessage(client, message) {
 				);
 
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
-				console.log(membersFromRole.length);
 				const members = membersFromRole
 					.map((member) => member.user)
 					.filter((user) => !membersNotIncluded.includes(user.username));

@@ -32,6 +32,11 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
+	var membersFromRole = message.guild.roles.cache.get(role.id).members;
+	console.log(membersFromRole.map(function (member) {
+		return member.user;
+	}).length);
+
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
 		switch (command[0]) {
@@ -131,13 +136,12 @@ async function replyMessage(client, message) {
 						});
 					}
 
-					var role = message.guild.roles.cache.find(function (r) {
+					var _role = message.guild.roles.cache.find(function (r) {
 						return r.name === 'Engineering';
 					});
 
-					var membersFromRole = message.guild.roles.cache.get(role.id).members;
-					console.log(membersFromRole.length);
-					var members = membersFromRole.map(function (member) {
+					var _membersFromRole = message.guild.roles.cache.get(_role.id).members;
+					var members = _membersFromRole.map(function (member) {
 						return member.user;
 					}).filter(function (user) {
 						return !membersNotIncluded.includes(user.username);
