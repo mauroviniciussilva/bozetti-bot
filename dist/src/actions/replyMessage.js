@@ -127,9 +127,13 @@ async function replyMessage(client, message) {
 
 					var membersFromRole = message.guild.roles.cache.get(role.id).members;
 					var members = membersFromRole.map(function (member) {
-						console.log(member.user);
 						return member.user;
+					}).filter(function (user) {
+						return !['Felipe Mulhbaier', 'mauroV'].includes(user.username);
 					});
+
+					console.log(members, members.length);
+
 					var membersCount = members.length;
 					var maxIndex = membersCount - 1;
 

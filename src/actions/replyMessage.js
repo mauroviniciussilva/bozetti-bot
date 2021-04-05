@@ -114,10 +114,14 @@ export async function replyMessage(client, message) {
 				);
 
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
-				const members = membersFromRole.map((member) => {
-					console.log(member.user);
-					return member.user;
-				});
+				const members = membersFromRole
+					.map((member) => member.user)
+					.filter(
+						(user) => !['Felipe Mulhbaier', 'mauroV'].includes(user.username)
+					);
+
+				console.log(members, members.length);
+
 				const membersCount = members.length;
 				const maxIndex = membersCount - 1;
 
