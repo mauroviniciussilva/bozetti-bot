@@ -18,6 +18,7 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
+	const role = message.guild.roles.cache.find((r) => r.name === 'Engineering');
 	const membersFromRole = message.guild.roles.cache.get(role.id).members;
 	console.log(membersFromRole.map((member) => member.user).length);
 

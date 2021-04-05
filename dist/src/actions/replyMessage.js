@@ -32,6 +32,9 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
+	var role = message.guild.roles.cache.find(function (r) {
+		return r.name === 'Engineering';
+	});
 	var membersFromRole = message.guild.roles.cache.get(role.id).members;
 	console.log(membersFromRole.map(function (member) {
 		return member.user;
