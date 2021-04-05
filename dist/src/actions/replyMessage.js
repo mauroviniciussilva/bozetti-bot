@@ -32,6 +32,10 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
+	console.log(message.guild);
+
+	console.log(message.guild.id);
+
 	var role = message.guild.roles.cache.find(function (r) {
 		return r.name === 'Engineering';
 	});
@@ -41,9 +45,7 @@ async function replyMessage(client, message) {
 	}).length);
 
 	var list = client.guilds.cache.get();
-	list.members.forEach(function (member) {
-		return console.log(member.user.username);
-	});
+	console.log({ list: list });
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
