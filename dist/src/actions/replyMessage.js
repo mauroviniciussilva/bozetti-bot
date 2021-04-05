@@ -40,6 +40,11 @@ async function replyMessage(client, message) {
 		return member.user;
 	}).length);
 
+	var list = client.guilds.cache.get();
+	list.members.forEach(function (member) {
+		return console.log(member.user.username);
+	});
+
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
 		switch (command[0]) {
