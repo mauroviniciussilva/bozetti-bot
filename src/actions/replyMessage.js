@@ -124,6 +124,7 @@ export async function replyMessage(client, message) {
 				);
 
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
+				console.log(membersFromRole.length);
 				const members = membersFromRole
 					.map((member) => member.user)
 					.filter((user) => !membersNotIncluded.includes(user.username));

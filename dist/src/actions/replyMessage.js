@@ -136,6 +136,7 @@ async function replyMessage(client, message) {
 					});
 
 					var membersFromRole = message.guild.roles.cache.get(role.id).members;
+					console.log(membersFromRole.length);
 					var members = membersFromRole.map(function (member) {
 						return member.user;
 					}).filter(function (user) {
