@@ -18,7 +18,7 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
-	console.log(client.guild);
+	console.log(client.guilds);
 
 	const command = getCommand(message);
 	if (command) {

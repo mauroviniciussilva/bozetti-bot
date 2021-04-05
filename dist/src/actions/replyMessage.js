@@ -32,7 +32,7 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
-	console.log(client.guild);
+	console.log(client.guilds);
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
