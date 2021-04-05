@@ -102,10 +102,7 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				client.guilds.cache.members
-					.fetch({ limit: 1 })
-					.then(console.log)
-					.catch(console.error);
+				message.guild.members.fetch().then(console.log).catch(console.error);
 
 				// client.guilds.cache
 				// .get(message.guild.id)
