@@ -36,8 +36,10 @@ async function replyMessage(client, message) {
 	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
 	var list = client.guilds.cache.get(message.guild.id);
-	list.members.forEach(function (member) {
-		return console.log(member);
+	list.members.map(function (m) {
+		return m.user;
+	}).forEach(function (user) {
+		return console.log(user);
 	});
 
 	var command = (0, _messageHelpers.getCommand)(message);
