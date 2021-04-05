@@ -14,7 +14,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async (message) => {
-	replyMessage(client, message, args);
+	replyMessage(client, message);
 });
 
 client.login(process.env.DISCORD_TOKEN);

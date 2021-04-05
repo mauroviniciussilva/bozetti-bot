@@ -18,7 +18,7 @@ client.on('ready', function () {
 });
 
 client.on('message', async function (message) {
-	(0, _replyMessage.replyMessage)(client, message, args);
+	(0, _replyMessage.replyMessage)(client, message);
 });
 
 client.login(process.env.DISCORD_TOKEN);
