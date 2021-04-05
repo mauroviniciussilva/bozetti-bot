@@ -103,7 +103,7 @@ export async function replyMessage(client, message) {
 			}
 			case 'show-members': {
 				client.guilds.cache.members
-					.fetch({ query: 'hydra', limit: 1 })
+					.fetch({ limit: 1 })
 					.then(console.log)
 					.catch(console.error);
 
