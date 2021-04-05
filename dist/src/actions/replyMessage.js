@@ -12,6 +12,10 @@ var _gifProvider = require('../providers/gifProvider');
 
 var _gifProvider2 = _interopRequireDefault(_gifProvider);
 
+var _discord = require('discord.js');
+
+var _discord2 = _interopRequireDefault(_discord);
+
 var _setup = require('../../setup');
 
 var _messageHelpers = require('../helpers/messageHelpers');
@@ -111,7 +115,9 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					var teste = message.guild.members.cache.map(function (m) {
+					var teste = message.guild.members.cache.filter(function (m) {
+						return m.user.roles.includes('Engineering');
+					}).map(function (m) {
 						return m.user.username;
 					});
 
@@ -123,13 +129,7 @@ async function replyMessage(client, message) {
 					// 	)
 					// 	.map((member) => member.user.username);
 
-					var embed = new discord.RichEmbed({
-						title: 'Users with the Engineering role',
-						description: teste.join('\n'),
-						color: 0xffff
-					});
-
-					message.channel.send({ embed: embed });
+					message.channel.send({ teste: teste });
 
 					// message.guild.members
 					// 	.fetch()

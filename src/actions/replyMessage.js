@@ -1,4 +1,5 @@
 import gifProvider from '../providers/gifProvider';
+import Discord from 'discord.js';
 
 import { progress, cron } from '../../setup';
 import {
@@ -102,7 +103,9 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				const teste = message.guild.members.cache.map((m) => m.user.username);
+				const teste = message.guild.members.cache
+					.filter((m) => m.user.roles.includes('Engineering'))
+					.map((m) => m.user.username);
 
 				console.log(teste);
 
@@ -112,13 +115,7 @@ export async function replyMessage(client, message) {
 				// 	)
 				// 	.map((member) => member.user.username);
 
-				let embed = new discord.RichEmbed({
-					title: `Users with the Engineering role`,
-					description: teste.join('\n'),
-					color: 0xffff,
-				});
-
-				message.channel.send({ embed });
+				message.channel.send({ teste });
 
 				// message.guild.members
 				// 	.fetch()
