@@ -103,9 +103,15 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				const teste = message.guild.members.cache;
+				const role = message.guild.roles.cache.find(
+					(r) => r.name === 'Engineering'
+				);
 
-				console.log(teste);
+				console.log({ role });
+
+				const teste = message.guild.members.cache.map((m) => m.user.username);
+
+				console.log({ teste });
 
 				// let membersWithRole = message.guild.members
 				// 	.filter((member) =>

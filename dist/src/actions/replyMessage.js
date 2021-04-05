@@ -115,9 +115,17 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					var teste = message.guild.members.cache;
+					var role = message.guild.roles.cache.find(function (r) {
+						return r.name === 'Engineering';
+					});
 
-					console.log(teste);
+					console.log({ role: role });
+
+					var teste = message.guild.members.cache.map(function (m) {
+						return m.user.username;
+					});
+
+					console.log({ teste: teste });
 
 					// let membersWithRole = message.guild.members
 					// 	.filter((member) =>
