@@ -32,10 +32,6 @@ async function replyMessage(client, message) {
 	if ((0, _messageHelpers.isABotMessage)(message)) return;
 	if ((0, _messageHelpers.isDirectMessage)(message)) return;
 
-	var guild = client.guilds.cache[0].id;
-
-	console.log(guild, message.guild.id);
-
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {
 		switch (command[0]) {
@@ -123,7 +119,7 @@ async function replyMessage(client, message) {
 					});
 					break;
 				}
-			case 'show-members':
+			case 'sortear-responsabilidades':
 				{
 					var role = message.guild.roles.cache.find(function (r) {
 						return r.name === 'Engineering';
@@ -131,22 +127,28 @@ async function replyMessage(client, message) {
 
 					var membersFromRole = message.guild.roles.cache.get(role.id).members;
 					var members = membersFromRole.map(function (member) {
+						console.log(member.user);
 						return member.user;
 					});
 					var membersCount = members.length;
 					var maxIndex = membersCount - 1;
 
-					var luckyIndex = getRandomInt(0, maxIndex);
-					var drawnMember = members[luckyIndex];
+					var luckyIndexForCodeReview = getRandomInt(0, maxIndex);
+					var luckyIndexForTest = getRandomInt(0, maxIndex);
 
-					message.channel.send('Fala <@' + drawnMember.id + '>! Voc\xEA foi escolhido aleatoriamente para ser mencionado aqui. Mas ainda \xE9 s\xF3 um teste, desconsidera mais uma vez!');
+					var drawnMemberCodeReview = members[luckyIndexForCodeReview];
+					var drawnMemberTest = members[luckyIndexForTest];
+
+					message.channel.send('Fala <@' + drawnMemberCodeReview.id + '>! Voc\xEA \xE9 o escolhido da semanada para ser respons\xE1vel pela coluna de **Revis\xE3o** no Board!');
+
+					message.channel.send('Fala <@' + drawnMemberTest.id + '>! Voc\xEA \xE9 o escolhido da semanada para ser respons\xE1vel pela coluna de **Teste** no Board!');
 					break;
 				}
 
 			case 'help':
 				{
 					message.react('ℹ️');
-					message.channel.send('\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n!mostrar-pronuncia - Enviarei um arquivo de \xE1udio com a pron\xFAncia correta\n```\n        ');
+					message.channel.send('\n```\n!ping - Validar lat\xEAncia\n!iniciar - Inicia a contagem de dias\n!parar - Para a contagem de dias\n!errou - Reinicia a contagem\n!progresso - Visualizar dias da contagem\n!mudar-progresso - Recebe um argumento para modificar o progresso do contador\n!mostrar-pronuncia - Enviarei um arquivo de \xE1udio com a pron\xFAncia correta\n!sortear-responsabilidades - Faz um sorteio entre os membros da role \'Engineering\' para distribuir responsabilidades do Board\n```\n        ');
 					break;
 				}
 			default:

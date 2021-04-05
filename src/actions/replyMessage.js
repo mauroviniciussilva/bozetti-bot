@@ -18,10 +18,6 @@ export async function replyMessage(client, message) {
 	if (isABotMessage(message)) return;
 	if (isDirectMessage(message)) return;
 
-	const guild = client.guilds.cache[0].id;
-
-	console.log(guild, message.guild.id);
-
 	const command = getCommand(message);
 	if (command) {
 		switch (command[0]) {
@@ -112,21 +108,31 @@ export async function replyMessage(client, message) {
 				});
 				break;
 			}
-			case 'show-members': {
+			case 'sortear-responsabilidades': {
 				const role = message.guild.roles.cache.find(
 					(r) => r.name === 'Engineering'
 				);
 
 				const membersFromRole = message.guild.roles.cache.get(role.id).members;
-				const members = membersFromRole.map((member) => member.user);
+				const members = membersFromRole.map((member) => {
+					console.log(member.user);
+					return member.user;
+				});
 				const membersCount = members.length;
 				const maxIndex = membersCount - 1;
 
-				const luckyIndex = getRandomInt(0, maxIndex);
-				const drawnMember = members[luckyIndex];
+				const luckyIndexForCodeReview = getRandomInt(0, maxIndex);
+				const luckyIndexForTest = getRandomInt(0, maxIndex);
+
+				const drawnMemberCodeReview = members[luckyIndexForCodeReview];
+				const drawnMemberTest = members[luckyIndexForTest];
 
 				message.channel.send(
-					`Fala <@${drawnMember.id}>! Você foi escolhido aleatoriamente para ser mencionado aqui. Mas ainda é só um teste, desconsidera mais uma vez!`
+					`Fala <@${drawnMemberCodeReview.id}>! Você é o escolhido da semanada para ser responsável pela coluna de **Revisão** no Board!`
+				);
+
+				message.channel.send(
+					`Fala <@${drawnMemberTest.id}>! Você é o escolhido da semanada para ser responsável pela coluna de **Teste** no Board!`
 				);
 				break;
 			}
@@ -142,6 +148,7 @@ export async function replyMessage(client, message) {
 !progresso - Visualizar dias da contagem
 !mudar-progresso - Recebe um argumento para modificar o progresso do contador
 !mostrar-pronuncia - Enviarei um arquivo de áudio com a pronúncia correta
+!sortear-responsabilidades - Faz um sorteio entre os membros da role 'Engineering' para distribuir responsabilidades do Board
 \`\`\`
         `);
 				break;
