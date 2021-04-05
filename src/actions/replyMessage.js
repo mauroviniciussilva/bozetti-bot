@@ -102,7 +102,7 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				client.guild.members
+				client.guild.cache.members
 					.fetch({ query: 'hydra', limit: 1 })
 					.then(console.log)
 					.catch(console.error);

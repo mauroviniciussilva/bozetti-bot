@@ -111,7 +111,7 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					client.guild.members.fetch({ query: 'hydra', limit: 1 }).then(console.log).catch(console.error);
+					client.guild.cache.members.fetch({ query: 'hydra', limit: 1 }).then(console.log).catch(console.error);
 
 					// client.guilds.cache
 					// .get(message.guild.id)
