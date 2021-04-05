@@ -36,9 +36,10 @@ async function replyMessage(client, message) {
 	// const membersFromRole = message.guild.roles.cache.get(role.id).members;
 
 	var guild = client.guilds.cache.get(message.guild.id);
+	var guildFetched = guild.fetch();
 	var membersCount = guild.memberCount;
 	console.log({ membersCount: membersCount });
-	var users = guild.members.cache.map(function (m) {
+	var users = guildFetched.members.map(function (m) {
 		return m.user;
 	});
 	console.log(users.length);
