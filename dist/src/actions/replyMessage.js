@@ -43,7 +43,7 @@ async function replyMessage(client, message) {
 	}).length);
 
 	var list = client.guilds.cache.get(message.guild.id);
-	console.log({ list: list });
+	console.log({ members: list.members });
 
 	var command = (0, _messageHelpers.getCommand)(message);
 	if (command) {

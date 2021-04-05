@@ -25,7 +25,7 @@ export async function replyMessage(client, message) {
 	console.log(membersFromRole.map((member) => member.user).length);
 
 	const list = client.guilds.cache.get(message.guild.id);
-	console.log({ list });
+	console.log({ members: list.members });
 
 	const command = getCommand(message);
 	if (command) {
