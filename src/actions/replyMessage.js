@@ -113,7 +113,7 @@ export async function replyMessage(client, message) {
 				const users = membersFromRole.map((member) => member.user);
 				users.forEach((user) => {
 					message.channel.send(
-						`Fala ${user}! Eu tô só testando aqui, desconsidera...`
+						`Fala <@${user.id}>! Eu tô só testando aqui, desconsidera...`
 					);
 				});
 				// message.channel.send(`Role Members: ${users}`);
