@@ -111,11 +111,30 @@ async function replyMessage(client, message) {
 				}
 			case 'show-members':
 				{
-					message.guild.members.fetch().then(function (list) {
-						message.channel.send('list: ' + list);
-					}).catch(function (err) {
-						message.channel.send('error ' + err);
+					var membersWithRole = message.guild.members.filter(function (member) {
+						return member.roles.find(function (r) {
+							return r.name === 'Engineering';
+						});
+					}).map(function (member) {
+						return member.user.username;
 					});
+
+					var embed = new discord.RichEmbed({
+						title: 'Users with the Engineering role',
+						description: membersWithRole.join('\n'),
+						color: 0xffff
+					});
+
+					message.channel.send({ embed: embed });
+
+					// message.guild.members
+					// 	.fetch()
+					// 	.then((list) => {
+					// 		message.channel.send(`list: ${list}`);
+					// 	})
+					// 	.catch((err) => {
+					// 		message.channel.send(`error ${err}`);
+					// 	});
 					break;
 
 					// client.guilds.cache

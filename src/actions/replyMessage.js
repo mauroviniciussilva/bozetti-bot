@@ -102,14 +102,28 @@ export async function replyMessage(client, message) {
 				break;
 			}
 			case 'show-members': {
-				message.guild.members
-					.fetch()
-					.then((list) => {
-						message.channel.send(`list: ${list}`);
-					})
-					.catch((err) => {
-						message.channel.send(`error ${err}`);
-					});
+				let membersWithRole = message.guild.members
+					.filter((member) =>
+						member.roles.find((r) => r.name === 'Engineering')
+					)
+					.map((member) => member.user.username);
+
+				let embed = new discord.RichEmbed({
+					title: `Users with the Engineering role`,
+					description: membersWithRole.join('\n'),
+					color: 0xffff,
+				});
+
+				message.channel.send({ embed });
+
+				// message.guild.members
+				// 	.fetch()
+				// 	.then((list) => {
+				// 		message.channel.send(`list: ${list}`);
+				// 	})
+				// 	.catch((err) => {
+				// 		message.channel.send(`error ${err}`);
+				// 	});
 				break;
 
 				// client.guilds.cache
